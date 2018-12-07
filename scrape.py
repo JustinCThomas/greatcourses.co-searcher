@@ -21,6 +21,8 @@ def scrape_page_range(start=1, stop=10):
                     free_courses.append(cards[i])
             for i in free_courses:
                 print(i.find(class_="card-title").find("b").get_text())
+                print(base_url + i.find(class_="card-footer").find("a")["href"])
+                print()
             print()
             sleep(1)
 
