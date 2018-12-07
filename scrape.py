@@ -9,15 +9,19 @@ def scrape_page_range(start=1, stop=10):
     full_url = base_url + str(start)
     if start <= stop:
         for i in range(start, stop + 1):
+            print("Now scraping page %s...\n" % i)
             req = requests.get("{0}/page/{1}".format(base_url, i))
             content = req.content
             soup = BeautifulSoup(content, "html.parser")
-            titles = soup.find_all(class_="card-title")
-            print(i)
+            cards = soup.find_all(class_="card")
 
-            for i in range(len(titles)):
-                title = titles[i].find("b").get_text()
-                print(title)
+            free_courses = []
+            for i in range(len(cards)):
+                if cards[i].find(class_="card-footer").find("b").get_text() == 'FREE':
+                    free_courses.append(cards[i])
+            for i in free_courses:
+                print(i.find(class_="card-title").find("b").get_text())
+            print()
             sleep(1)
 
 
@@ -33,5 +37,6 @@ if __name__ == "__main__":
         else:
             print("MANUAL")
             scrape_page_range(int(page_start), int(page_end))
-    except:
+    except Exception as e:
         print("Something went wrong.\nBe sure to enter integers for the page numbers.")
+        print(e)
