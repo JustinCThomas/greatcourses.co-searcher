@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from time import sleep
 
 base_url="https://www.greatcourses.co"
 
@@ -10,8 +11,9 @@ def scrape_page_range(start=1, stop=10):
         for i in range(start, stop + 1):
             req = requests.get("{0}/page/{1}".format(base_url, i))
             content = req.content
-            html_content = BeautifulSoup(content, "html.parser")
+            soup = BeautifulSoup(content, "html.parser")
             print(i)
+            sleep(1)
 
 
 if __name__ == "__main__":
