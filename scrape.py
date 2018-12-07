@@ -13,6 +13,7 @@ def page_range(start=1, stop=10):
             print(req)
             html_content = BeautifulSoup(content, "html.parser")
 
+
 if __name__ == "__main__":
     page_start = input("Enter the starting page number: ")
     page_end = input("Enter the ending page number: ")
