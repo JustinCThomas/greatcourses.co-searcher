@@ -7,11 +7,11 @@ base_url="https://www.greatcourses.co"
 def page_range(start=1, stop=10):
     full_url = base_url + str(start)
     if start < stop:
-        for i in range(start, stop):
+        for i in range(start, stop + 1):
             req = requests.get("{0}/page/{1}".format(base_url, i))
             content = req.content
-            print(req)
             html_content = BeautifulSoup(content, "html.parser")
+            print(i)
 
 
 if __name__ == "__main__":
@@ -20,9 +20,10 @@ if __name__ == "__main__":
 
     try:
         if page_start == '' or page_end == '':
+            print("EMPTY!")
             page_range()
         else:
+            print("MANUAL")
             page_range(int(page_start), int(page_end))
     except:
         print("Something went wrong.\nBe sure to enter integers for the page numbers")
-    page_range()
