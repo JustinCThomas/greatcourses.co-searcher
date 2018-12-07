@@ -7,25 +7,31 @@ base_url="https://www.greatcourses.co"
 # Specify the starting and stopping points for the scraping
 def scrape_page_range(start=1, stop=10):
     full_url = base_url + str(start)
-    if start < stop:
+    if start <= stop:
         for i in range(start, stop + 1):
             req = requests.get("{0}/page/{1}".format(base_url, i))
             content = req.content
             soup = BeautifulSoup(content, "html.parser")
+            titles = soup.find_all(class_="card-title")
             print(i)
+
+            for i in range(len(titles)):
+                title = titles[i].find("b").get_text()
+                print(title)
             sleep(1)
 
 
 if __name__ == "__main__":
     page_start = input("Enter the starting page number: ")
     page_end = input("Enter the ending page number: ")
+    print()
 
     try:
         if page_start == '' or page_end == '':
-            print("EMPTY!")
+            print("Using the default page settings: 1-10.")
             scrape_page_range()
         else:
             print("MANUAL")
             scrape_page_range(int(page_start), int(page_end))
     except:
-        print("Something went wrong.\nBe sure to enter integers for the page numbers")
+        print("Something went wrong.\nBe sure to enter integers for the page numbers.")
