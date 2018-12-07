@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 base_url="https://www.greatcourses.co"
 
 # Specify the starting and stopping points for the scraping
-def page_range(start=1, stop=10):
+def scrape_page_range(start=1, stop=10):
     full_url = base_url + str(start)
     if start < stop:
         for i in range(start, stop + 1):
@@ -21,9 +21,9 @@ if __name__ == "__main__":
     try:
         if page_start == '' or page_end == '':
             print("EMPTY!")
-            page_range()
+            scrape_page_range()
         else:
             print("MANUAL")
-            page_range(int(page_start), int(page_end))
+            scrape_page_range(int(page_start), int(page_end))
     except:
         print("Something went wrong.\nBe sure to enter integers for the page numbers")
