@@ -28,17 +28,25 @@ def scrape_page_range(start=1, stop=10):
 
 
 if __name__ == "__main__":
+    print('Enter "all" to scrape every page.')
     page_start = input("Enter the starting page number: ")
-    page_end = input("Enter the ending page number: ")
-    print()
+    if page_start.lower() == "all":
+        req = requests.get(base_url)
+        content = req.content
+        soup = BeautifulSoup(content, "html.parser")
+        last_page = int(soup.find(class_="pagination").find_all("li")[5].find("a").get_text())
+        scrape_page_range(1, last_page)
+    else:
+        page_end = input("Enter the ending page number: ")
+        print()
 
-    try:
-        if page_start == '' or page_end == '':
-            print("Using the default page settings: 1-10.")
-            scrape_page_range()
-        else:
-            print("MANUAL")
-            scrape_page_range(int(page_start), int(page_end))
-    except Exception as e:
-        print("Something went wrong.\nBe sure to enter integers for the page numbers.")
-        print(e)
+        try:
+            if page_start == '' or page_end == '':
+                print("Using the default page settings: 1-10.")
+                scrape_page_range()
+            else:
+                print("MANUAL")
+                scrape_page_range(int(page_start), int(page_end))
+        except Exception as e:
+            print("Something went wrong.\nBe sure to enter integers for the page numbers.")
+            print(e)
