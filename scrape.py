@@ -21,6 +21,13 @@ def scrape_page_range(start=1, stop=10):
                     free_courses.append(cards[i])
             for i in free_courses:
                 print(i.find(class_="card-title").find("b").get_text())
+
+                language = i.find(class_="card-body").find_all("h6")[0].find("b").get_text()
+                print("Language: %s" % language)
+
+                language = i.find(class_="card-body").find_all("h6")[1].find("b").get_text()
+                print("Category: %s" % language)
+                
                 print(base_url + i.find(class_="card-footer").find("a")["href"])
                 print()
             print()
@@ -51,5 +58,6 @@ if __name__ == "__main__":
             print("MANUAL")
             scrape_page_range(int(page_start), int(page_end))
     except Exception as e:
+        print()
         print("Something went wrong.\nBe sure to enter integers for the page numbers.")
         print(e)
