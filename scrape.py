@@ -27,8 +27,13 @@ def scrape_page_range(start=1, stop=10):
 
                 language = i.find(class_="card-body").find_all("h6")[1].find("b").get_text()
                 print("Category: %s" % language)
+
+                gc_co_url = base_url + i.find(class_="card-footer").find("a")["href"]
+                url_split = gc_co_url.split("/")
+                course_number = url_split[4]
+                udemy_url = "{}/goto/{}".format(base_url, course_number)
+                print(udemy_url)
                 
-                print(base_url + i.find(class_="card-footer").find("a")["href"])
                 print()
             print()
             sleep(1)
