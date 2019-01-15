@@ -33,7 +33,7 @@ def scrape_page_range(start=1, stop=10):
                 course_number = url_split[4]
                 udemy_url = "{}/goto/{}".format(base_url, course_number)
                 print(udemy_url)
-                
+
                 print()
             print()
             sleep(1)
@@ -61,6 +61,8 @@ if __name__ == "__main__":
             scrape_page_range()
         else:
             print("MANUAL")
+            page_start = 1 if int(page_start) < 1 else page_start
+            page_end = last_page if int(page_end) > last_page else page_end
             scrape_page_range(int(page_start), int(page_end))
     except Exception as e:
         print()
