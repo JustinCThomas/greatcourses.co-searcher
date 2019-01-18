@@ -18,6 +18,9 @@ def scrape_page_range(start=1, stop=10, create_file=False):
             soup = BeautifulSoup(content, "html.parser")
             cards = soup.find_all(class_="card")
 
+            if create_file:
+                file.write("PAGE %s\n\n" % i)
+
             free_courses = []
             for i in range(len(cards)):
                 if cards[i].find(class_="card-footer").find("b").get_text() == 'FREE':
@@ -47,6 +50,7 @@ def scrape_page_range(start=1, stop=10, create_file=False):
                 print()
             print()
             sleep(1)
+        print("Scraping Complete.")
 
 
 if __name__ == "__main__":
