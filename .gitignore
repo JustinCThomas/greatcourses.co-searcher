@@ -1,2 +1,3 @@
 venv/
 course_information.txt
+__pycache__/
