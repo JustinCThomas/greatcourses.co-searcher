@@ -84,6 +84,5 @@ if __name__ == "__main__":
             page_end = last_page if int(page_end) > last_page else page_end
             scrape_page_range(int(page_start), int(page_end), file_output_choice)
     except Exception as e:
-        print()
-        print("Something went wrong.\nBe sure to enter integers for the page numbers.")
+        print("\nSomething went wrong.\nBe sure to enter integers for the page numbers.")
         print(e)
