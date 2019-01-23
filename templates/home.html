@@ -6,5 +6,17 @@
   </head>
   <body>
     <h1>Greatcourses.co Search Free Courses</h1>
+
+    <form action="{{ url_for('home') }}" method="post">
+      <h2>Search for courses through the following pages</h2>
+
+      <label for="page_start">Page Start:</label>
+      <input type="number" name="page_start" placeholder="1" required autofocus>
+
+      <label for="page_end">Page End:</label>
+      <input type="number" name="page_end" placeholder="10" required>
+
+      <input type="submit">
+    </form>
   </body>
 </html>
