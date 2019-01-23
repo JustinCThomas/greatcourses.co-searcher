@@ -1,14 +1,19 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, json
 
 app=Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def home():
+    return render_template("home.html")
+
+@app.route('/scrape', methods=['POST'])
+def scrape():
     if request.method == 'POST':
         page_start = request.form['page_start']
         page_end = request.form['page_end']
 
-    return render_template("home.html")
+    return json.dumps({'status': 'OK', 'page_start': page_start, 'page_end': page_end})
+    # return redirect(url_for('home'))
 
 if __name__== "__main__":
     app.run(debug=True)
