@@ -6,6 +6,8 @@ app=Flask(__name__)
 def home():
     return render_template("home.html")
 
+# Code adapted from:
+# https://www.bogotobogo.com/python/Flask/Python_Flask_with_AJAX_JQuery.php
 @app.route('/scrape', methods=['POST'])
 def scrape():
     if request.method == 'POST':

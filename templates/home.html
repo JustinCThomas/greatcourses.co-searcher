@@ -10,16 +10,16 @@
   <body>
     <h1>Greatcourses.co Search Free Courses</h1>
 
-    <form action="{{ url_for('scrape') }}" method="post">
+    <form action="{{ url_for('scrape') }}" method="post" role="form">
       <h2>Search for courses through the following pages</h2>
 
       <label for="page_start">Page Start:</label>
-      <input type="number" name="page_start" placeholder="1" required autofocus>
+      <input type="number" id="pageStart" name="page_start" value="1" required autofocus>
 
       <label for="page_end">Page End:</label>
-      <input type="number" name="page_end" placeholder="10" required>
+      <input type="number" id="pageEnd" name="page_end" value="10" required>
 
-      <input type="submit">
+      <button class="btn btn-lg btn-primary btn-block" type="button">Register</button>
     </form>
   </body>
 </html>
