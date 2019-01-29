@@ -9,7 +9,9 @@ $(function(){
       data: $('form').serialize(),
       type: 'POST',
       success: function(response){
-        console.log(response);
+        // console.log(response);
+        var container = $('.container')[0];
+        container.innerHTML = response;
       },
       error: function(error){
         console.log(error);
