@@ -5,10 +5,13 @@ from time import sleep
 base_url="https://www.greatcourses.co"
 
 # Specify the starting and stopping points for the scraping
-def scrape_page_range(start=1, stop=10, create_file=False):
+def scrape_page_range(start=1, stop=10, create_file=False, return_html=False):
     full_url = base_url + str(start)
     if create_file:
         file = open("course_information.txt", 'w')
+
+    if return_html:
+        course_content = "<table>"
 
     if start <= stop:
         for i in range(start, stop + 1):
@@ -44,6 +47,9 @@ def scrape_page_range(start=1, stop=10, create_file=False):
 
 
                 text_to_write = "{}\n{}\n{}\n{}\n\n".format(title, language, category, udemy_url)
+                if return_html:
+                    course_content += "<tr><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>".format(title, language, category, udemy_url)
+
                 if create_file:
                     file.write(text_to_write)
 
@@ -51,6 +57,10 @@ def scrape_page_range(start=1, stop=10, create_file=False):
             print()
             sleep(1)
         print("Scraping Complete.")
+
+    if return_html:
+        course_content += "</table>"
+        return course_content
 
 
 if __name__ == "__main__":

@@ -12,6 +12,7 @@ $(function(){
         // console.log(response);
         var container = $('.container')[0];
         container.innerHTML = response;
+        // container.innerHTML = "<p>Hello WORLD, COBOL is where it's at!</p>";
       },
       error: function(error){
         console.log(error);

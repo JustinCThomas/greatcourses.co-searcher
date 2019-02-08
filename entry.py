@@ -15,11 +15,12 @@ def scrape():
         page_start = request.form['page_start']
         page_end = request.form['page_end']
 
-        """
-        This function would return some html or information as a dictionary
-        html_to_display = scrape_page_range(page_start, page_end)
+        
+        # This function would return some html or information as a dictionary
+        html_to_display = scrape_page_range(int(page_start), int(page_end), return_html=True)
+        return html_to_display
 
-        """
+        
 
     return json.dumps({'status': 'OK', 'page_start': page_start, 'page_end': page_end})
     # return redirect(url_for('home'))
