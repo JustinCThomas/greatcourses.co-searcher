@@ -18,3 +18,7 @@ table td {
 table td:first-child {
   text-align: left;
 }
+
+a {
+  text-decoration: none;
+}
