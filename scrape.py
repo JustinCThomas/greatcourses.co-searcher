@@ -48,7 +48,7 @@ def scrape_page_range(start=1, stop=10, create_file=False, return_html=False):
 
                 text_to_write = "{}\n{}\n{}\n{}\n\n".format(title, language, category, udemy_url)
                 if return_html:
-                    course_content += "<tr><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>".format(title, language, category, udemy_url)
+                    course_content += "<tr><td>{}</td><td>{}</td><td>{}</td><td><a href={}>Udemy Link</a></td></tr>".format(title, language, category, udemy_url)
 
                 if create_file:
                     file.write(text_to_write)
