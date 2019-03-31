@@ -48,7 +48,10 @@ def scrape_page_range(start=1, stop=10, create_file=False, return_html=False):
 
                 text_to_write = "{}\n{}\n{}\n{}\n\n".format(title, language, category, udemy_url)
                 if return_html:
-                    course_content += "<tr><td><a href={}>{}</a></td><td>{}</td><td>{}</td></tr>".format(udemy_url, title, language, category)
+                    # [0].find("img")["src"]
+                    image = i.find(class_="card-image").find_all("img")[0]["src"]
+                    course_content += "<tr><td><a target='_blank' href={}>{}</a></td><td><a target='_blank' href={}><img src='{}'/></a></td><td>{}</td><td>{}</td></tr>".format(udemy_url, title, udemy_url, image, language, category)
+                    # course_content += "<tr><td><a href={}>{}</a></td><td>{}</td><td>{}</td></tr>".format(udemy_url, title, language, category)
 
                 if create_file:
                     file.write(text_to_write)

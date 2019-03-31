@@ -19,6 +19,12 @@ table td:first-child {
   text-align: left;
 }
 
+img {
+  width: 250px;
+  height: 150px;
+  border-radius: 10%;
+}
+
 a {
   text-decoration: none;
 }
